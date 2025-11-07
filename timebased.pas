@@ -3,7 +3,7 @@ unit timebased;
 interface
 
 uses
-  sysutils, crt, Events;
+  sysutils, crt;
 
 type
   TEvo = (oeuf, enfant, ado, adulte);
@@ -80,14 +80,14 @@ procedure movestats(var tama: Ttamago; var dernierTick: longint);
 var
   actuel, diff: longint;
 begin
-  actuel := tickcount;
+  actuel := GetTickCount64;
   diff := actuel - dernierTick;
 
   //stats degarde in 1000ms
   if diff >= 1000 then
   begin
     dernierTick := actuel;
-
+ 
     tama.faim := tama.faim + 1;      { devient plus affamé }
     if tama.faim > 10 then tama.faim := 10;
 
